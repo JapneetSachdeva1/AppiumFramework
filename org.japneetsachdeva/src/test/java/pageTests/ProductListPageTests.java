@@ -25,7 +25,7 @@ public class ProductListPageTests extends BaseTest
     //TODO: Assertions
     String cartToast = "Please add some product at first";
 
-    @Test(dataProvider = "getDataPositiveLogin",description = "Validate the toast message for empty cart", priority = 1)
+    @Test(dataProvider = "getDataPositiveLogin",description = "Validate the toast message for empty cart", priority = 1,groups = {"Regression"},invocationCount = 1)
     public void testEmptyCartToastMessage(HashMap<String,String> input)
     {
         formPage = new FormPage(driver);

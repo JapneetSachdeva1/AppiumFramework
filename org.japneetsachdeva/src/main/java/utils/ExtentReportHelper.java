@@ -17,8 +17,9 @@ public class ExtentReportHelper
     public static ExtentReports getReportObject() throws IOException {
         //String reportPath = "./reports/index.html";
        // String reportPath = "./reports/";
-        File file = new File(System.getProperty("user.dir")+"/reports/"+dtf.format(LocalDateTime.now()));
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter(file);
+       // File file = new File(System.getProperty("user.dir")+"/reports/"+dtf.format(LocalDateTime.now()));
+        String reportPath = "./reports/"+dtf.format(LocalDateTime.now());
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
 
         sparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
         sparkReporter.config().setTheme(Theme.DARK);

@@ -6,10 +6,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.CartPage;
 import pageObjects.FormPage;
 import pageObjects.ProductListPage;
@@ -30,15 +27,15 @@ public class E2ETest extends BaseTest
     WebViewPage webViewPage;
     CartPage cartPage;
 
-    @BeforeMethod
-    public void setupActivity()
-    {
-        //TODO: to re-load the activty once your actions are completed
-        driver.startActivity(new Activity("com.androidsample.generalstore","com.androidsample.generalstore.MainActivity"));
-    }
+//    @AfterMethod
+//    public void setupActivity()
+//    {
+//        //TODO: to re-load the activty once your actions are completed
+//        driver.startActivity(new Activity("com.androidsample.generalstore","com.androidsample.generalstore.MainActivity"));
+//    }
 
 
-    @Test(dataProvider = "getData", groups = {"Regression"})
+    @Test(dataProvider = "getData", groups = {"Smoke"})
     public void testTotalPriceOfItemsInCart(HashMap<String,String> input) throws InterruptedException {
 
      formPage = new FormPage(driver);

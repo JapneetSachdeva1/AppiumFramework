@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -27,7 +28,8 @@ public class BaseTest extends Commons {
 
 
     @BeforeClass(alwaysRun = true)
-    public void setUpAppium() throws IOException {
+    public void setUpAppium() throws IOException
+    {
         properties = loadProperty();
         String ipAddress = System.getProperty("ipAddress") != null ? System.getProperty("idAddress") : properties.getProperty("ipAddress");
         String portNumber = System.getProperty("portNumber") != null ? System.getProperty("portNumber") : properties.getProperty("portNumber");
@@ -35,13 +37,16 @@ public class BaseTest extends Commons {
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName(properties.getProperty("deviceName"));
+        options.setSystemPort(8200);
         options.setChromedriverExecutable("C:\\Users\\Japneet Sachdeva\\Downloads\\appium_chrome_driver_2\\chromedriver.exe");
-        options.setApp(System.getProperty("user.dir") + "/src/test/java/resources/General-Store.apk");
+        options.setApp(System.getProperty("user.dir") + "\\src\\test\\java\\resources\\General-Store.apk");
         driver = new AndroidDriver(serviceBuilder.getUrl(), options);
+
     }
 
 
-    public void longPressGesture(WebElement element) {
+    public void longPressGesture(WebElement element)
+    {
         ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
                 ImmutableMap.of("elementId", ((RemoteWebElement) element).getId(),
                         "duration", 2000));

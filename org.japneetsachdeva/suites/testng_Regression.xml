@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="5" parallel="tests">
+<suite name="All Test Suite">
 
     <groups>
         <run>
@@ -9,12 +9,18 @@
     </groups>
 
     <listeners>
-        <listener class-name="utils.TestNGListeners_main"/>
+        <listener class-name="utils.TestNGListeners_main_2"/>
     </listeners>
 
-    <test verbose="2" preserve-order="true" name="Form page test">
+    <test  name="LoginPageTests">
         <classes>
-            <class name="pageTests.E2ETest"/>
+            <class name="pageTests.LoginPageTests"/>
+        </classes>
+    </test>
+
+    <test  name="ProductListPageTests">
+        <classes>
+            <class name="pageTests.ProductListPageTests"/>
         </classes>
     </test>
 

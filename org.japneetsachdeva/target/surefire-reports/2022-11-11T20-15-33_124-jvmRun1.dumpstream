@@ -1,0 +1,3 @@
+# Created at 2022-11-11T20:17:06.980
+Cannot invoke "com.aventstack.extentreports.ExtentTest.log(com.aventstack.extentreports.Status, String)" because the return value of "java.lang.ThreadLocal.get()" is null
+

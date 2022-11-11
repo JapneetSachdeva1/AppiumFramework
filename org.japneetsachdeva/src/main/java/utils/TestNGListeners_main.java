@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -23,48 +24,46 @@ import java.time.format.DateTimeFormatter;
 import static utils.Commons.takeScreenshot;
 import static utils.ExtentReportHelper.getReportObject;
 
-public class TestNGListeners_main extends Commons implements ITestListener
+public class TestNGListeners_main implements ITestListener
 {
     //int id =0;
-    static ExtentReports extentReports;
-    static {
-        try {
-            extentReports = getReportObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private final ExtentReports extentReports = getReportObject();
 
-    ExtentTest logger;
+   // private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
     public AndroidDriver driver = null;
     //ThreadLocal to generate the report for parallel execution
-    public ThreadLocal<ExtentTest> extentTestThreadLocal = new ThreadLocal<>();
+    private ThreadLocal<ExtentTest> extentTestThreadLocal = new ThreadLocal<>();
 
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    public TestNGListeners_main() throws IOException {
+    }
+
 
     public void onTestStart(ITestResult result)
     {
-        logger = extentReports.createTest(result.getMethod().getMethodName());
-        logger.assignAuthor("<b> <i> Japneet Sachdeva </i> </b>");
+        final ExtentTest logger = extentReports.createTest(result.getMethod().getMethodName(), "<b> <i> Description: " + result.getMethod().getDescription() + "</i> </b>");
+
+        logger.assignCategory("Regression");
         extentTestThreadLocal.set(logger);
         extentTestThreadLocal.get().log(Status.INFO, "<b> Automation start Time: </b>"+ dtf.format(LocalDateTime.now()));
 
-        try{
-            driver = (AndroidDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        extentTestThreadLocal.get().log(Status.INFO, "Driver is: "+driver);
-        extentTestThreadLocal.get().log(Status.INFO, "Test description: "+result.getMethod().getDescription());
+        //extentTestThreadLocal.get().log(Status.INFO, "Test description: "+result.getMethod().getDescription());
+        //removeDuplicateTest();
     }
+
+    public void removeDuplicateTest()
+    {
+         }
 
 
     @SneakyThrows
     public void onTestSuccess(ITestResult result)
     {
         extentTestThreadLocal.get().log(Status.PASS, MarkupHelper.createLabel("Test completed successfully!", ExtentColor.GREEN));
+        //removeDuplicateTest();
     }
 
 
@@ -74,9 +73,11 @@ public class TestNGListeners_main extends Commons implements ITestListener
         //TODO: adds a comment to the report that test got failed
         extentTestThreadLocal.get().log(Status.FAIL, MarkupHelper.createLabel("Test Failed! ", ExtentColor.RED));
 
-        //TODO: Adds screenshot in base65 format
+        //TODO: Adds screenshot in base64 format
         try{
             driver = (AndroidDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+
+            extentTestThreadLocal.get().log(Status.INFO, "Driver: "+ driver);
             }
         catch (Exception e)
         {
@@ -85,8 +86,9 @@ public class TestNGListeners_main extends Commons implements ITestListener
 
          String path = takeScreenshot(driver,result.getMethod().getMethodName());
         //TODO: Adds a comment in the report with the reason of the test failure
-        extentTestThreadLocal.get().fail(MediaEntityBuilder.createScreenCaptureFromBase64String("data:img/png;base64," +path).build());
+        extentTestThreadLocal.get().fail(MediaEntityBuilder.createScreenCaptureFromBase64String("base64" +path).build());
         extentTestThreadLocal.get().log(Status.FAIL, result.getThrowable());
+        //removeDuplicateTest();
     }
 
 
@@ -99,8 +101,8 @@ public class TestNGListeners_main extends Commons implements ITestListener
     }
 
     @Override
-    public void onStart(ITestContext iTestContext) {
-
+    public void onStart(ITestContext iTestContext)
+    {
     }
 
     public void onTestFailedWithTimeout(ITestResult result) {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-11-11T15:17:53Z" name="All Test Suite" finished-at="2022-11-11T15:21:20Z" duration-ms="206505">
+    <groups>
+      <group name="Smoke">
+        <method signature="E2ETest.testTotalPriceOfItemsInCart(java.util.HashMap)[pri:0, instance:pageTests.E2ETest@576d5deb]" name="testTotalPriceOfItemsInCart" class="pageTests.E2ETest"/>
+      </group> <!-- Smoke -->
+    </groups>
+    <test started-at="2022-11-11T15:17:53Z" name="Form page test" finished-at="2022-11-11T15:21:20Z" duration-ms="206505">
+      <class name="pageTests.E2ETest">
+        <test-method is-config="true" signature="setUpAppium()[pri:0, instance:pageTests.E2ETest@576d5deb]" started-at="2022-11-11T15:17:53Z" name="setUpAppium" finished-at="2022-11-11T15:18:07Z" duration-ms="13175" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpAppium -->
+        <test-method signature="testTotalPriceOfItemsInCart(java.util.HashMap)[pri:0, instance:pageTests.E2ETest@576d5deb]" started-at="2022-11-11T15:18:07Z" name="testTotalPriceOfItemsInCart" data-provider="getData" finished-at="2022-11-11T15:19:31Z" duration-ms="84517" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{name=Japneet Sachdeva, country_name=Argentina}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTotalPriceOfItemsInCart -->
+        <test-method signature="testTotalPriceOfItemsInCart(java.util.HashMap)[pri:0, instance:pageTests.E2ETest@576d5deb]" started-at="2022-11-11T15:19:31Z" name="testTotalPriceOfItemsInCart" data-provider="getData" finished-at="2022-11-11T15:21:19Z" duration-ms="107427" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{name=Rahul Shetty, country_name=Macau}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTotalPriceOfItemsInCart -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:pageTests.E2ETest@576d5deb]" started-at="2022-11-11T15:21:19Z" name="tearDown" finished-at="2022-11-11T15:21:20Z" duration-ms="1207" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- pageTests.E2ETest -->
+    </test> <!-- Form page test -->
+  </suite> <!-- All Test Suite -->
+</testng-results>
