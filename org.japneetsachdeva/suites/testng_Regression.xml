@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" thread-count="5" parallel="tests">
+
+    <groups>
+        <run>
+            <include name="Regression"/>
+        </run>
+    </groups>
+
+    <listeners>
+        <listener class-name="utils.TestNGListeners_main"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="Form page test">
+        <classes>
+            <class name="pageTests.E2ETest"/>
+        </classes>
+    </test>
+
+</suite>
